@@ -1,0 +1,130 @@
+StudentCard.css
+
+/* body {
+  background-color: #d8ae7e;
+  font-family: cursive;
+  font-size: 1.25rem;
+} */
+/*
+.main {
+  width: 40%;
+  padding: 24px;
+  background-color: #fff2d7;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.1);
+  height: 450px;
+  margin-top: 30px;
+}
+
+.pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.div2 {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.div1 {
+  text-align: center;
+  margin-top: 4px;
+}
+
+.full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  margin: 10px 0;
+}*/
+/* StudentCard.css */
+body {
+  background-color: #f4f4f9;
+  font-family: Arial, sans-serif;
+}
+
+.student-card {
+  width: 60%;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.student-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.student-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.student-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.student-class {
+  font-size: 18px;
+  color: #555555;
+}
+
+.chart-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.student-marks {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.marks-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.student-marks ul {
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+}
+
+.student-marks li {
+  margin: 5px 0;
+}
+
+.student-category {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}

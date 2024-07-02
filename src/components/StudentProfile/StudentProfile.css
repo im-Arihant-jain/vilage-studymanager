@@ -1,0 +1,57 @@
+/* StudentProfile.css */
+.student-profile {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .profile-details h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .profile-details p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  .subject-scores {
+    margin-top: 20px;
+  }
+  
+  .subject-scores h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .subject-scores ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .subject-scores li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .btndis{
+    display: flex;
+    justify-content: space-around;
+  }
+  

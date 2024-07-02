@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "brain.js": "^2.0.0-beta.23",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
