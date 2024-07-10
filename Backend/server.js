@@ -1,15 +1,16 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const cors = require("cors");
-
+const brain = require('brain.js');
+require('dotenv').config();
 // Import controllers
 const { loginController, registerController, getFellow } = require('./controllers/userController');
 const { addStudent, editStudent, getStudentbyClass, getAllStudents, updateMarks ,getStudent} = require('./controllers/studentController');
-
-// MongoDB connection URI
+const dburl = process.env.ATLASDB_URL
+// MongoDB connection URI // mongodb://127.0.0.1:27017/edudata
 async function main() {
     try {
-      await mongoose.connect('mongodb://127.0.0.1:27017/edudata');
+      await mongoose.connect(dburl);
       console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB:', error);
@@ -34,6 +35,35 @@ app.post('/api/v1/users/register', registerController);
 // app.post('/api/v1/fellow/some-route', someFellowController);
 
 // Student Routes
+const net = new brain.NeuralNetwork({ hiddenLayers: [3] });
+
+// Initial training data based on the importance of activities
+const initialTrainingData = [
+  { input: [1, 0, 0, 0, 0,0,0], output: { sports: 1 } },  // Activity 1 is most important
+  { input: [0, 1, 0, 0, 0,0,0], output: { literature: 1 } },  // Activity 2 is second most important
+  { input: [0, 0, 1, 0, 0,0,0], output: { art: 1 } },  // Activity 3 is third most important
+  { input: [0, 0, 0, 1, 0,0,0], output: { speaking: 1 } },  // Activity 4 is fourth most important
+  { input: [0, 0, 0, 0, 1,0,0], output: { music: 1 } },  
+  { input: [0, 0, 0, 0, 1,0,0], output: { dancing: 1 } },
+  { input: [0, 0, 0, 0, 1,0,0], output: { others: 1 } } // Activity 5 is least important
+];
+
+// Train the neural network with initial data
+net.train(initialTrainingData);
+
+// Function to get suggested activity
+const getSuggestion = (preferences) => {
+  const result = net.run(preferences);
+  const suggestedActivity = Object.keys(result).reduce((a, b) => (result[a] > result[b] ? a : b));
+  return suggestedActivity;
+};
+
+// Function to update training data and retrain the network
+const updateTrainingDataAndRetrain = (newData) => {
+  initialTrainingData.push(newData);
+  net.train(initialTrainingData);
+};
+
 app.post('/api/v1/student/add-student', addStudent);
 app.post('/api/v1/student/edit-student', editStudent);
 app.post('/api/v1/student/get-studentbyclass', getStudentbyClass);
@@ -42,6 +72,17 @@ app.post('/api/v1/student/update-monthly-score', updateMarks);
 
 app.post('/api/v1/student/getstudent', getStudent);
 app.post('/api/v1/student/getfellow', getFellow);
+app.post('/api/submit-preferences', (req, res) => {
+  const preferences = req.body.preferences;
+  const maxPref = Math.max(...preferences);
+  const activitySel = preferences.indexOf(maxPref) + 1;
+
+  const newTrainingData = { input: preferences, output: { [`activity${activitySel}`]: 1 } };
+  updateTrainingDataAndRetrain(newTrainingData);
+
+  const suggestedActivity = getSuggestion(preferences);
+  res.json({ suggestedActivity });
+});
 // Start server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

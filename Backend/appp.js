@@ -5,11 +5,13 @@ const net = new brain.NeuralNetwork({ hiddenLayers: [3] });
 
 // Initial training data based on the importance of activities
 const initialTrainingData = [
-  { input: [1, 0, 0, 0, 0], output: { activity1: 1 } },  // Activity 1 is most important
-  { input: [0, 1, 0, 0, 0], output: { activity2: 1 } },  // Activity 2 is second most important
-  { input: [0, 0, 1, 0, 0], output: { activity3: 1 } },  // Activity 3 is third most important
-  { input: [0, 0, 0, 1, 0], output: { activity4: 1 } },  // Activity 4 is fourth most important
-  { input: [0, 0, 0, 0, 1], output: { activity5: 1 } }   // Activity 5 is least important
+  { input: [1, 0, 0, 0, 0], output: { sports: 1 } },  // Activity 1 is most important
+  { input: [0, 1, 0, 0, 0], output: { literature: 1 } },  // Activity 2 is second most important
+  { input: [0, 0, 1, 0, 0], output: { art: 1 } },  // Activity 3 is third most important
+  { input: [0, 0, 0, 1, 0], output: { speaking: 1 } },  // Activity 4 is fourth most important
+  { input: [0, 0, 0, 0, 1], output: { music: 1 } },  
+  { input: [0, 0, 0, 0, 1], output: { dancing: 1 } },
+  { input: [0, 0, 0, 0, 1], output: { others: 1 } } // Activity 5 is least important
 ];
 
 // Train the neural network with initial data
@@ -35,7 +37,7 @@ const updateTrainingDataAndRetrain = (newData) => {
 };
 
 // New student data
-const newStudentPreferences = [0, 8, 3, 2, 1];  
+const newStudentPreferences = [0, 8, 3, 2, 1,4,8];  
 let maxpref  = 0;// Example input indicating student preferences
 let activitysel = 0;
 for (let i = 0; i < newStudentPreferences .length; i++) {
@@ -52,3 +54,4 @@ updateTrainingDataAndRetrain(newTrainingData);
 // Get updated suggestion
 const updatedSuggestedActivity = getSuggestion(newStudentPreferences);
 console.log(`Updated suggested activity: ${updatedSuggestedActivity}`);
+  // hotel to achaa hai 

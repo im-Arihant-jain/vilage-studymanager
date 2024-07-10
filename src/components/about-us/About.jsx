@@ -5,9 +5,13 @@ import "./About.css";
 const AboutUs = () => {
   return (
     <section id="about" className="about">
-      <div className="image">
-        <img src={require("./pic2.png")} className="pic2" />
-      </div>
+      <div className="image-container">
+  <div className="image">
+    <img src={require("./pic2.jpeg")} className="pic2" alt="Description" />
+  </div>
+</div>
+
+
       {/* <div className="main"> */}
       <div className="content">
         <h2>About Us</h2>

@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import {BarChartOutlined , DeleteOutlined, EditOutlined, UserAddOutlined } from '@ant-design/icons';
-import { Layout, Menu, Button, Select, message, Table, Modal, Form, Input } from 'antd';
+import { Layout, Menu, Button, Select, message, Table, Modal, Form, Input, InputNumber } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import MonthlyScoreEditor from './MonthlyScoreeditor';
 
 const { Header } = Layout;
-
 const Home = () => {
   const navigate = useNavigate();
   const dummyData = [
     // Your dummy data
   ];
+  
+const categories = ['Sports', 'Music', 'Art', 'Speaking', 'Literature', 'Dancing','Others'];
 
   const [students, setStudents] = useState(dummyData);
   const [loading, setLoading] = useState(false);
   const [student, setStudent] = useState(false);
   const [modal, setModal] = useState(false);
   const [editable, setEditable] = useState(null);
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const getAllStudents = async () => {
     setLoading(true);
     try {
@@ -48,7 +49,17 @@ const Home = () => {
   useEffect(() => {
     getAllStudents();
   }, []);
-
+  const onFinish = (values) => {
+    const preferences = categories.map((category) => values[category]);
+    axios.post('http://localhost:8000/api/submit-preferences', { preferences })
+      .then((response) => {
+        message.success(`Suggested activity: ${response.data.suggestedActivity}`);
+        setIsModalVisible(false);
+      })
+      .catch((error) => {
+        message.error('An error occurred. Please try again.');
+      });
+  };
   const handleAddUser = async (values) => {
     try {
       const fellow = JSON.parse(localStorage.getItem('userId'));
@@ -163,9 +174,28 @@ const Home = () => {
         </Menu>
         <span>"          "</span>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<UserAddOutlined />}>Get AI-Social Activity</Menu.Item>
+          <Menu.Item key="1" onClick={() => setIsModalVisible(true)} icon={<UserAddOutlined />}>Get AI-Social Activity</Menu.Item>
         </Menu>
       </Header> 
+      <Modal title="AI-Social Activity" visible={isModalVisible} onCancel={() => setIsModalVisible(false)} footer={null}>
+        <Form onFinish={onFinish} layout="vertical">
+          {categories.map((category) => (
+            <Form.Item
+              key={category}
+              label={`Number of children interested in ${category}`}
+              name={category}
+              rules={[{ required: true, message: `Please input the number of children interested in ${category}!` }]}
+            >
+              <InputNumber min={0} />
+            </Form.Item>
+          ))}
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
       <Table bordered columns={columns} dataSource={students} rowKey="key" loading={loading} />
       {student && (
         <Modal visible={student} title="Add Student" onCancel={() => setStudent(false)} footer={null}>

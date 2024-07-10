@@ -3,6 +3,29 @@
   background-color: #f9f9f9;
   /* display: flex; */
 }
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh; /* Full viewport height */
+  background-image: linear-gradient(to right, #e0e0e0 1px, transparent 1px),
+                    linear-gradient(to bottom, #e0e0e0 1px, transparent 1px);
+  background-size: 20px 20px; /* Size of the grid cells */
+}
+
+.image {
+  position: relative;
+  padding: 10px;
+}
+
+.pic2 {
+  border: 5px solid #fff; /* White border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+  max-width: 100%; /* Responsive image */
+  height: auto; /* Maintain aspect ratio */
+}
+
 
 .about h2 {
   font-size: 2rem;

@@ -11,7 +11,7 @@ const Header = ({ currentUser }) => (
       <Logo className="logo" />
     </Link>
 
-    <h2>Gram Urja Foundation</h2>
+    <h2>Gram Urja</h2>
 
     <div className="options">
       {/* <Link className="option" to="/aboutUs">
@@ -25,9 +25,14 @@ const Header = ({ currentUser }) => (
           SIGN OUT
         </div>
       ) : (
-        <Link className="option" to="/signin">
+        <>
+        <Link className="option link-option" to="/signin">
           SIGN IN
         </Link>
+        <Link className="option" to="/add-fellow">
+        ADD FELLOW 
+      </Link>
+      </>
       )}
     </div>
   </div>

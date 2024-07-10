@@ -85,21 +85,21 @@ class SignIn extends React.Component {
           />
           
           <div className="dropdown">
-            <label htmlFor="role" className="m-1 btn">Role</label>
+            {/* <label htmlFor="role" className="m-1 btn">Role</label> */}
             <select
               id="role"
               name="role"
               value={this.state.role}
               onChange={this.handleRoleChange}
-              className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52"
+              className=""
+              disabled
             >
-              <option value="Fellow">Fellow</option>
-              <option value="Fellow Manager">Fellow Manager</option>
+              <option value="Fellow"></option>
             </select>
           </div>
-
+          
           <div className="buttons">
-            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton type="submit">Sign In As Fellow</CustomButton>
             {/* <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton> */}
           </div>
         </form>
