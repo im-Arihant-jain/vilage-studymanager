@@ -18,7 +18,9 @@ async function main() {
   }
   
   main();
-
+app.get('/',(req,res)=>{
+    res.json('hello');
+})
 // Express app
 const app = express();
 
