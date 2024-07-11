@@ -39,9 +39,11 @@ const Profile = () => {
       try {
         setLoading(true);
         const fellowid = JSON.parse(localStorage.getItem('userId'));
+        axios.defaults.withCredentials = true;
         // setLoading(true);
+        
         console.log(fellowid);
-        const response = await axios.post(`http://localhost:8000/api/v1/student/getfellow`,{_id:fellowid});
+        const response = await axios.post(`https://vilage-studymanager.vercel.app/api/v1/student/getfellow`,{_id:fellowid});
         // if (!response.ok) {
         //   throw new Error(`Error fetching data: ${response.statusText}`);
         // }

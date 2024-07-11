@@ -22,6 +22,7 @@ const categories = ['Sports', 'Music', 'Art', 'Speaking', 'Literature', 'Dancing
   const [isModalVisible, setIsModalVisible] = useState(false);
   const getAllStudents = async () => {
     setLoading(true);
+    axios.defaults.withCredentials = true;
     try {
       const fellowid = JSON.parse(localStorage.getItem('userId'));
       if (!fellowid) {
@@ -30,7 +31,7 @@ const categories = ['Sports', 'Music', 'Art', 'Speaking', 'Literature', 'Dancing
         return;
       }
 
-      const response = await axios.post('http://localhost:8000/api/v1/student/get-allStudents', { fellowid });
+      const response = await axios.post('https://vilage-studymanager.vercel.app/api/v1/student/get-allStudents', { fellowid });
       const arr = response.data.students.map(student => ({
         ...student,
         key: student._id
@@ -50,8 +51,9 @@ const categories = ['Sports', 'Music', 'Art', 'Speaking', 'Literature', 'Dancing
     getAllStudents();
   }, []);
   const onFinish = (values) => {
+    axios.defaults.withCredentials = true;
     const preferences = categories.map((category) => values[category]);
-    axios.post('http://localhost:8000/api/submit-preferences', { preferences })
+    axios.post('https://vilage-studymanager.vercel.app/api/submit-preferences', { preferences })
       .then((response) => {
         message.success(`Suggested activity: ${response.data.suggestedActivity}`);
         setIsModalVisible(false);
@@ -74,12 +76,13 @@ const categories = ['Sports', 'Music', 'Art', 'Speaking', 'Literature', 'Dancing
       };
 
       if (!editable) {
-        await axios.post('http://localhost:8000/api/v1/student/add-student', value);
+        axios.defaults.withCredentials = true;
+        await axios.post('https://vilage-studymanager.vercel.app/api/v1/student/add-student', value);
         message.success('Entry added');
       } else {
         console.log(values);
         const payload = values;
-        const response = await axios.post('http://localhost:8000/api/v1/student/edit-student', {
+        const response = await axios.post('https://vilage-studymanager.vercel.app/api/v1/student/edit-student', {
           id: editable._id,
           payload
         });
@@ -98,9 +101,10 @@ const categories = ['Sports', 'Music', 'Art', 'Speaking', 'Literature', 'Dancing
     navigate(`/student-profile/${record._id}`);
   }
   const handleSaveMonthlyScore = async (id, month, score,type) => {
+    
     try {
       console.log(id, month, score);
-      await axios.post('http://localhost:8000/api/v1/student/update-monthly-score', { id, month, score ,type});
+      await axios.post('https://vilage-studymanager.vercel.app/api/v1/student/update-monthly-score', { id, month, score ,type});
       message.success('Monthly score updated');
       getAllStudents();
     } catch (error) {

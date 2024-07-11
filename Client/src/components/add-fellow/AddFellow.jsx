@@ -24,8 +24,9 @@ const AddFellow = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    axios.defaults.withCredentials = true;
     try {
-      const response = await axios.post("http://localhost:8000/api/v1/users/register", fellow);
+      const response = await axios.post("https://vilage-studymanager.vercel.app/api/v1/users/register", fellow);
       if (response.status === 201) {
         // Navigate to another page or show a success message
         console.log("Fellow added successfully", response.data);

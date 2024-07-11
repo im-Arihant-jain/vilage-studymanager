@@ -32,10 +32,11 @@ const StudentProfile = () => {
   //const [data,setData] = useState(null); and hence its always good to become 8:30 and hence to meri -10 ho gyi
   useEffect(() => {
     const fetchStudentData = async () => {
+      axios.defaults.withCredentials = true;
       try {
         setLoading(true);
         console.log(userId);
-        const response = await axios.post(`http://localhost:8000/api/v1/student/getstudent`,{_id:userId});
+        const response = await axios.post(`https://vilage-studymanager.vercel.app/api/v1/student/getstudent`,{_id:userId});
         // if (!response.ok) {
         //   throw new Error(`Error fetching data: ${response.statusText}`);
         // }

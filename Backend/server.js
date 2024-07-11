@@ -6,11 +6,11 @@ require('dotenv').config();
 // Import controllers
 const { loginController, registerController, getFellow } = require('./controllers/userController');
 const { addStudent, editStudent, getStudentbyClass, getAllStudents, updateMarks ,getStudent} = require('./controllers/studentController');
-const dburl = process.env.ATLASDB_URL
+const dburl = process.env.ATLASDB_URL; 
 // MongoDB connection URI // mongodb://127.0.0.1:27017/edudata
 async function main() {
     try {
-      await mongoose.connect(dburl);
+      await mongoose.connect(dburl);    // vhii and hence its always good to make and hence its always good a d 
       console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB:', error);
@@ -23,12 +23,16 @@ async function main() {
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin : ['https://vilage-studymanager.vercel.app/'],
+     methods : ['POST', 'GET'],
+     credentials : true
+  }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.get('/',(req,res)=>{
-    res.json('hello');
-})
+
 // User Routes
 app.post('/api/v1/users/login', loginController);
 app.post('/api/v1/users/register', registerController);
