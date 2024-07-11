@@ -18,9 +18,7 @@ async function main() {
   }
   
   main();
-app.get('/',(req,res)=>{
-    res.json('hello');
-})
+
 // Express app
 const app = express();
 
@@ -28,7 +26,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.get('/',(req,res)=>{
+    res.json('hello');
+})
 // User Routes
 app.post('/api/v1/users/login', loginController);
 app.post('/api/v1/users/register', registerController);
