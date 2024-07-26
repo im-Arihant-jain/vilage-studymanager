@@ -23,19 +23,26 @@ async function main() {
 const app = express();
 
 // Middleware
-app.use(cors(
-  {
-    origin : ['https://vilage-studymanager-11-git-main-arihants-projects-c638e3ec.vercel.app'],
-     methods : ['POST', 'GET'],
-     credentials : true
-  }
-));
-app.options('*', cors({
-  origin: ['https://vilage-studymanager-11-git-main-arihants-projects-c638e3ec.vercel.app'],
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (origin && origin.includes('vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['POST', 'GET', 'OPTIONS'],
   credentials: true
-}));
-app.use(express.json());
+};
+
+app.use(cors(corsOptions));
+
+// Middleware
+app.use(express.json()); // for parsing application/json
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
+
 app.use(express.urlencoded({ extended: true }));
 
 // User Routes
