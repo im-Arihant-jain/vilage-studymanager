@@ -5,7 +5,7 @@ import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 // import StudentCard
 //  from "../card-status/StudentCard";
-const Header = ({ currentUser }) => (
+const Header = () => (
   <div className="header">
     <Link to="/" className="logo-container">
       <Logo className="logo" />
@@ -20,11 +20,7 @@ const Header = ({ currentUser }) => (
       {/* <Link className="option" to="/cardStatus">
         StudentCard
       </Link> */}
-      {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
-          SIGN OUT
-        </div>
-      ) : (
+      
         <>
         <Link className="option link-option" to="/signin">
           SIGN IN
@@ -33,7 +29,7 @@ const Header = ({ currentUser }) => (
         ADD FELLOW 
       </Link>
       </>
-      )}
+     
     </div>
   </div>
 );
