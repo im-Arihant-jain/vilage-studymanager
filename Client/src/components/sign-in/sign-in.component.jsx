@@ -33,7 +33,7 @@ class SignIn extends React.Component {
     const val = { email, password };
     axios.defaults.withCredentials = true;
     try {
-      const response = await axios.post("https://vilage-studymanager.vercel.app/api/v1/users/login", val);
+      const response = await axios.post("https://vilage-studymanager-11-arihants-projects-c638e3ec.vercel.app/api/v1/users/login", val);
       
       if (response.status === 200) {
         // Navigate to another page or show a success message
