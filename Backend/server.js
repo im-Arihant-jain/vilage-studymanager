@@ -25,7 +25,7 @@ const app = express();
 // Middleware
 app.use(cors(
   {
-    origin : ['https://vilage-studymanager.vercel.app'],
+    origin : ['https://vilage-studymanager-11-50h8889n3-arihants-projects-c638e3ec.vercel.app'],
      methods : ['POST', 'GET'],
      credentials : true
   }
