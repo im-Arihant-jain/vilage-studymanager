@@ -25,13 +25,13 @@ const app = express();
 // Middleware
 app.use(cors(
   {
-    origin : ['https://vilage-studymanager-11-gjm1nvfjw-arihants-projects-c638e3ec.vercel.app'],
+    origin : ['https://vilage-studymanager-11-git-main-arihants-projects-c638e3ec.vercel.app'],
      methods : ['POST', 'GET'],
      credentials : true
   }
 ));
 app.options('*', cors({
-  origin: ['https://vilage-studymanager-11-gjm1nvfjw-arihants-projects-c638e3ec.vercel.app'],
+  origin: ['https://vilage-studymanager-11-git-main-arihants-projects-c638e3ec.vercel.app'],
   methods: ['POST', 'GET', 'OPTIONS'],
   credentials: true
 }));
