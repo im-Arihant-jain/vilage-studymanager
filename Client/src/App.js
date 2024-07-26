@@ -77,30 +77,30 @@ import Footer from "./components/footer/Footer";
 import StudentProfile from "./components/StudentProfile/StudentProfile";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     currentUser: null
+  //   };
+  // }
 
-  unsubscribeFromAuth = null;
+  // unsubscribeFromAuth = null;
 
-  componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(user);
-    });
-  }
+  // componentDidMount() {
+  //   this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+  //     this.setState({ currentUser: user });
+  //     console.log(user);
+  //   });
+  // }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount() {
+  //   this.unsubscribeFromAuth();
+  // }
 
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header  />
         <Routes>
           <Route
             path="/"
