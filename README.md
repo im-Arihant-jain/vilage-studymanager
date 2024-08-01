@@ -57,3 +57,4 @@
 - **AI Connectivity Using Brain.js API:**
   - Integrates AI capabilities to offer personalized suggestions and insights.
   - Enhances functionalities such as predicting student performance and recommending study plans based on historical data.
+![Aesthetic UI Design]("C:\Users\Ankita\Downloads\home.jpeg")
